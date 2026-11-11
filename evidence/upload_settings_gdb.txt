@@ -1,0 +1,12 @@
+The target is set to little endian.
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+warning: Unable to find dynamic linker breakpoint function.
+GDB will be unable to debug shared library initializers
+and track explicitly loaded dynamic code.
+0x3ffe8f30 in ?? ()
+
+Program received signal SIGSEGV, Segmentation fault.
+0x41414141 in ?? ()
+pc: 0x41414141
+ra: 0x41414141
+sp: 0x40800a28

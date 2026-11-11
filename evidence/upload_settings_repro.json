@@ -1,0 +1,19 @@
+{
+  "component": "upload_settings.cgi",
+  "sample_binary_md5": "db1f9adbb473df9e696ba83da3c822d9",
+  "environment": "original MIPS CGI under QEMU; native lighttpd HTTP boundary",
+  "input": "HTTP Cookie with token= and 512-byte test value",
+  "http_result": {
+    "status": 500,
+    "header_reached_cgi": true
+  },
+  "direct_qemu_result": {
+    "returncode": -11,
+    "sigsegv_observed": true
+  },
+  "gdb_result": {
+    "pc": "0x41414141",
+    "ra": "0x41414141"
+  },
+  "limits": "Physical-device code execution and persistent device-wide denial of service were not demonstrated."
+}
