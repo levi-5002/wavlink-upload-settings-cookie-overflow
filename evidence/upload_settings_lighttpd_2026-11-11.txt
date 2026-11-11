@@ -1,0 +1,13 @@
+Isolated lab; container timestamps in UTC.
+
+Access log, short Cookie baseline:
+127.0.0.1 127.0.0.1:8080 - [11/Nov/2026:07:37:11 +0000] "POST /upload_settings.cgi HTTP/1.1" 500 365 "-" "-"
+
+Access log, 512-byte Cookie:
+127.0.0.1 127.0.0.1:8080 - [11/Nov/2026:07:37:14 +0000] "POST /upload_settings.cgi HTTP/1.1" 500 365 "-" "-"
+
+Error log, 512-byte Cookie:
+2026-11-11 07:37:14: (mod_cgi.c.1227) CGI pid 89 died with signal 11
+
+The HTTP 500 status occurs in both cases; the signal-11 log and direct-QEMU
+return code distinguish the oversized-input crash from the short baseline.

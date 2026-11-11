@@ -26,8 +26,12 @@ The demonstrated outcome is a CGI process crash with overwritten control-flow re
 
 The original MIPS CGI was tested under QEMU behind a native lighttpd HTTP boundary. A 512-byte Cookie containing `token=` reached the CGI and produced HTTP 500. Direct QEMU execution terminated with SIGSEGV (return code `-11`). GDB recorded `pc: 0x41414141` and `ra: 0x41414141` after the oversized input.
 
+In a repeat test on 2026-11-11 using the WL-WN570HA1B sample, a short Cookie caused the CGI to exit normally under direct QEMU, while the 512-byte test value caused SIGSEGV. Both requests returned HTTP 500 through lighttpd, so HTTP status alone does not distinguish the overflow. The lighttpd error log recorded the oversized CGI process dying with signal 11.
+
 - [Isolated reproduction result](evidence/upload_settings_repro.json)
 - [GDB crash excerpt](evidence/upload_settings_gdb.txt)
+- [2026-11-11 baseline and oversized retest](evidence/upload_settings_retest_2026-11-11.json)
+- [2026-11-11 lighttpd log excerpt](evidence/upload_settings_lighttpd_2026-11-11.txt)
 
 These observations show a reachable stack overwrite in the tested emulation environment. The firmware images and CGI binary are not redistributed here.
 

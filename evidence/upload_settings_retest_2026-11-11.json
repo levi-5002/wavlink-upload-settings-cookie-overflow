@@ -1,0 +1,51 @@
+{
+  "component": "upload_settings.cgi",
+  "binary_md5": "db1f9adbb473df9e696ba83da3c822d9",
+  "captured_utc": "2026-11-11T07:37:14Z",
+  "cases": [
+    {
+      "label": "baseline",
+      "direct": {
+        "component": "upload_settings.cgi",
+        "mode": "direct-qemu",
+        "cookie_payload_length": 4,
+        "returncode": 0,
+        "sigsegv_observed": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      "http": {
+        "component": "upload_settings.cgi",
+        "mode": "http-via-native-lighttpd",
+        "url": "http://127.0.0.1:8080/upload_settings.cgi",
+        "cookie_payload_length": 4,
+        "http_status": 500,
+        "connection_error": "",
+        "response": "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n  <title>500 Internal Server Error</title>\n </head>\n <body>\n  <h1>500 Internal Server Error</h1>\n </body>\n</html>\n",
+        "header_reached_cgi": true
+      }
+    },
+    {
+      "label": "oversized",
+      "direct": {
+        "component": "upload_settings.cgi",
+        "mode": "direct-qemu",
+        "cookie_payload_length": 512,
+        "returncode": -11,
+        "sigsegv_observed": true,
+        "stdout": "",
+        "stderr": "qemu: uncaught target signal 11 (Segmentation fault) - core dumped\n"
+      },
+      "http": {
+        "component": "upload_settings.cgi",
+        "mode": "http-via-native-lighttpd",
+        "url": "http://127.0.0.1:8080/upload_settings.cgi",
+        "cookie_payload_length": 512,
+        "http_status": 500,
+        "connection_error": "",
+        "response": "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n  <title>500 Internal Server Error</title>\n </head>\n <body>\n  <h1>500 Internal Server Error</h1>\n </body>\n</html>\n",
+        "header_reached_cgi": true
+      }
+    }
+  ]
+}
